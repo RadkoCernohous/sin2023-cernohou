@@ -16,8 +16,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  rel="stylesheet">
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css"
+  rel="stylesheet">
+  <script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"
+></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <title>Document</title>
 </head>
@@ -72,7 +83,6 @@ if(isset($_REQUEST["reg"]) and isset($_REQUEST["email"]) and isset($_REQUEST["ps
           $data=$data.$row["userdata"];
           $id=$id.$row["id"];
           $passwordDtbs=$passwordDtbs.$row["password"];
-          $_SESSION["loginData"] = $data;
         }
         if(password_verify($passwordDtbs, $password)){
           $prihlaseno=true;
@@ -119,7 +129,6 @@ if (isset($_REQUEST["prihlasitSe"])){
               while($row = mysqli_fetch_array($result)) {
                 $data=$data.$row["userdata"];
                 $id=$id.$row["id"];
-                $_SESSION["loginData"] = $data;
                 $isActive = $row["active"];
               }
               if($isActive == 0){
@@ -307,6 +316,13 @@ if (isset($_REQUEST["prihlasitSe"])){
           <div class="hodnoceniTestu vysledkyTestuRadekElement"><a href=" #!">Score</a></div>
         </div>
        </div>
+       <div class="smazaniTestu">
+       <label for="smazaniTestu" >Select how many old test results do you want to delete:</label> <br>
+       <div class="inputRange">
+       <input type="range"  name="inputsmazaniTestu" id="inputSmazaniTestu"> <br>
+       </div> 
+       </div>
+       <button class="hlavniStranabtn" id="btnsmazatTest">Delete old test results</button>
     </form>
 
     <form class="pridaniJazyka" autocomplete="off">
@@ -391,17 +407,12 @@ if (isset($_REQUEST["prihlasitSe"])){
   <div id="modalInfo" class="modalInfo">
     <div class="modalInfoObsah" id="modalInfoObsah">
     <span class="zavritInfoModal" id="zavritInfoModal">&times;</span>
-    <h2 class="modalInfoNadpis" id="modalInfoNadpis">User manual</h2>
-    <p class="modalInfoText" ><b>Dear user</b>,  </p>
-    <p class="modalInfoText" > please read this manual for <b>best user experience</b>. You can always open this manual, using the button at the bottom of the page. Now, let's go through all the elements of the page, from top to bottom.</p>
-    <p class="modalInfoText" >First of all, you choose the Language and Lesson you want to practise. We have already prepared some of the world's most widely spread languages with lessons full of essential vocabulary, you can try them out.</p>
-    <p class="modalInfoText" >Then, you can see the four colorful boxes - blue, pink, yellow an green one. They serve as a place for practising the words in the Language and Lesson you have just chosen. In the blue and pink box, you are given a word which you are supposed to translate to/from the Language you have just chosen. You write the full word, if it's incorrect, the word will be completed automatically after submitting. In the yellow, box you select the correct translation from 3 options, whereas in the green one you are completing the word´s missing letters, one by one.</p>
-    <p class="modalInfoText" >The test mode can be started or cancelled using the next box - the red one. When you are in practise mode, the switch to test mode is made by choosing the number of words in test and then clicking the Start test button. While being in the test mode, you can return back to practise mode by clicking the Stop test button.</p>
-    <p class="modalInfoText" >All your vocabulary is displayed in the gray box. The table with vocabulary works in 3 layers - Languages, Lessons, and Words. You can delete any of those by right-clicking the Language/Lesson/Word you want to delete. Click Go back to return to the previous layer.</p>
-    <p class="modalInfoText" >Your test results are displayed in the next box (red). You can filter tests of ceratin Languages/Lessons by typing the Language/Lesson name.</p>
-    <p class="modalInfoText" >All blue boxes serve to extend your vocabulary - Languages, Lessons, and Words. If a Word has multiple translations, seperate them by comma.</p>
-    <p class="modalInfoText" >If you want to share part of your vocabulary with friends, that´s what the orange box is for. After submitting whether you want to share the entire Language or just a specific Lesson, you select which one you want to share. After clicking the Generate link button, you can send the generated link to your friends. After they open the link and submit their credentials, part of your vocabulary will be imported to theirs.</p>
-    <p class="modalInfoText">Your Vocabulary is updated automatically, after adding or deleting Language/Lesson/Word.</p>
+    <h2 class="modalInfoNadpis" id="modalInfoNadpis">Tutorial</h2>
+    <div class="modalInfoKontejner">
+    <img id="modalImage" src="tutorial1.png" alt="tutorial" style="width: 85%; height: auto;">
+    <button class="hlavniStranabtn" style="float: right; width: 15%; padding-right:1%; font-size:2rem; text-decoration:none;"><span id="tutorialCislo">1/6</span><br><u id="tutorialNext">Next</u></button>
+    <div style="clear: both;"></div>
+      </div>
     <div id="zobrazitZnova"></div>
     </div>
 

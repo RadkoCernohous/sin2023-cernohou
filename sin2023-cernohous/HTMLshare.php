@@ -77,7 +77,7 @@ if(isset($_REQUEST["id"]) and isset($_REQUEST["type"]) and isset($_REQUEST["lang
       $dataImport=false;
     }
   }
-}
+} 
 else{
   $message="Invalid link!";
   $dataImport=false;
