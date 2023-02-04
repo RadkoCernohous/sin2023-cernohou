@@ -179,7 +179,8 @@ h1 {
   transition: all 0.3s ease-in-out;
 }
 
-.hlavniStranabtn:hover {
+.hlavniStranabtn:hover,
+#tutorialNext:hover {
   background-color: rgba(255, 255, 255, 0.4);
   color: black;
   text-decoration: none;
@@ -626,7 +627,14 @@ h1 {
   white-space: nowrap;
 }
 
+.smazaniTestu {
+  margin-top: 4%;
+  padding-left: 1%;
+}
 
+.inputRange {
+  width: 30%;
+}
 
 @media screen and (max-width: 992px) {
   .prehled {
@@ -657,6 +665,7 @@ h1 {
     display: inline-flex;
     width: 40%;
   }
+
 
   #odstranit {
     margin-top: 5%;
@@ -912,6 +921,10 @@ b .popis {
   text-align: center;
 }
 
+.modalInfoNadpis {
+  font-size: 3rem;
+}
+
 .aktualizovatSlovicka {
   width: 90%;
   text-align: right;
@@ -923,9 +936,16 @@ b .popis {
   text-align: right;
 }
 
+
+
+
 @media screen and (max-width: 992px) {
   .modalObsah {
     width: 80%;
+  }
+
+  .modalInfoObsah {
+    width: 100%;
   }
 
   .modalVysledkyNadpis,

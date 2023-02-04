@@ -15,6 +15,9 @@ const modalInfo = document.getElementById("modalInfo");
 const modalInfoText = document.getElementById("modalInfoText");
 const zavritInfoModal = document.getElementById("zavritInfoModal");
 const zobrazitZnova = document.getElementById("zobrazitZnova");
+const tutorialNext = document.getElementById("tutorialNext");
+const modalImage = document.getElementById("modalImage");
+const tutorialCislo = document.getElementById("tutorialCislo");
 
 const vybratJazyk = document.getElementById("vybratJazyk");
 const vybratLekci = document.getElementById("vybratLekci");
@@ -49,6 +52,8 @@ const btnZrusitTest = document.getElementById("stopTest");
 const vybratPocetOtazek = document.getElementById("vybratPocetOtazek");
 
 const vysledkyTestuKontejner = document.querySelector(".vysledkyTestuKontejner")
+const btnsmazatTest = document.getElementById("btnsmazatTest");
+const inputSmazaniTestu = document.getElementById("inputSmazaniTestu");
 
 const popis1 = document.getElementById("popis1");
 const popis2 = document.getElementById("popis2");
@@ -127,7 +132,7 @@ class Aplikace {
     this.#prihlasenyUzivatel.arr4;
     this.#prihlasenyUzivatel.ukol1PulBodu = true;
     this.#prihlasenyUzivatel.ukol2PulBodu = true;*/
-    if (this.#prihlasenyUzivatel.zobrazovatInfo == true) {
+    if (this.#prihlasenyUzivatel.zobrazovatInfo == true && window.innerWidth > 500) {
       this.zobrazitInfo(1);
     }
     jmeno.textContent = this.#prihlasenyUzivatel.jmeno;
@@ -136,6 +141,21 @@ class Aplikace {
     this.generovaniVysledkuTest();
     //console.log(this.#prihlasenyUzivatel)
     this.odpocet = this.zacitOdpocet();
+
+    tutorialNext.addEventListener("click", function () {
+      let cisloObrazku = parseInt(tutorialCislo.textContent[0]);
+      if (cisloObrazku < 2) {
+        modalImage.src = `tutorial${cisloObrazku + 1}.png`;
+        tutorialCislo.textContent = `${cisloObrazku + 1}/6`;
+      }
+      else {
+        zavritInfoModal.click();
+        modalImage.src = `tutorial1.png`;
+        tutorialCislo.textContent = `1/6`;
+      }
+      clearInterval(this.odpocet);
+      this.odpocet = this.zacitOdpocet();
+    }.bind(this))
 
     vybratJazyk.addEventListener("change", function (e) {
       this.vyberJazyku(e);
@@ -215,6 +235,12 @@ class Aplikace {
         e.preventDefault();
       }
       this.generovaniVysledkuTest();
+      clearInterval(this.odpocet);
+      this.odpocet = this.zacitOdpocet();
+    }.bind(this))
+
+    btnsmazatTest.addEventListener("click", function (e) {
+      this.smazatTest(e);
       clearInterval(this.odpocet);
       this.odpocet = this.zacitOdpocet();
     }.bind(this))
@@ -302,6 +328,8 @@ class Aplikace {
     btnUkazatManual.addEventListener("click", function (e) {
       e.preventDefault();
       this.zobrazitInfo(0);
+      modalImage.src = `tutorial1.png`;
+      tutorialCislo.textContent = `1/6`;
       clearInterval(this.odpocet);
       this.odpocet = this.zacitOdpocet();
     }.bind(this))
@@ -309,12 +337,12 @@ class Aplikace {
     let arrow = document.createElement('div');
     arrow.innerHTML = '<p> Go up &uarr;</p > ';
     arrow.style.cssText = `
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: none; // initially the arrow is hidden`;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        font - size: 1.5rem;
+        cursor: pointer;
+        display: none; // initially the arrow is hidden`;
 
     document.body.appendChild(arrow);
     window.addEventListener('scroll', function () {
@@ -343,10 +371,8 @@ class Aplikace {
 
         },
         error: function (jqXHR, textStatus, errorThrown) {
-          alert("Error: No internet connection");
+          //alert("Error: No internet connection");
         }
-
-
       });
     })
 
@@ -485,7 +511,8 @@ class Aplikace {
     <div class="hodnoceniTestu vysledkyTestuRadekElement"><a href=" #!">Score</a></div>
   </div>`;
     let filter = vysledkyTestuFilter.value;
-    this.#prihlasenyUzivatel.zaznamyTestu.slice().reverse().forEach(function (test) {
+    let pomArr = this.#prihlasenyUzivatel.zaznamyTestu.slice()
+    pomArr.reverse().forEach(function (test) {
       if (test.testovanyJazyk.includes(filter) || test.testovanaLekce.includes(filter)) {
         html += `<div class="vysledkyTestuRadek">
         <div class="datumTestu vysledkyTestuRadekElement"><a href="#!">${test.datum}</a></div>
@@ -498,11 +525,25 @@ class Aplikace {
     vysledkyTestuKontejner.innerHTML = html;
   }
 
+  smazatTest(e) {
+    e.preventDefault();
+    let procentoSmazanychOtazek = inputSmazaniTestu.value;
+    let pocetSmazanychOtazek = Math.round(this.#prihlasenyUzivatel.zaznamyTestu.length * (procentoSmazanychOtazek / 100));
+    let potvrzeni = confirm(`Do you really want to delete oldest ${pocetSmazanychOtazek} test results?`);
+    if (potvrzeni == true) {
+      this.#prihlasenyUzivatel.zaznamyTestu.splice(0, pocetSmazanychOtazek);
+      this.generovaniVysledkuTest();
+      this.nacistData();
+    }
+  }
+
   aktulizacePopisZodpovezenychotazek() {
     popisSoucasnyMod.innerHTML = `Test mode <br>${this.#prihlasenyUzivatel.pocetZodpovezenychOtazek}/${this.#prihlasenyUzivatel.pocetOtazek} words completed`
   }
 
   odhlasitUzivatele() {
+    let data = JSON.stringify(this.#prihlasenyUzivatel);
+    schovanyKontejner.setAttribute("value", data);
     btnOdhlasit.click();
   }
 
