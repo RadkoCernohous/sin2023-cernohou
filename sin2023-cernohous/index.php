@@ -114,10 +114,10 @@ if (isset($_REQUEST["prihlasitSe"])){
         $conn->set_charset("utf8mb4");
         
         //prepare and execute sql 
-        $sql = "SELECT id,userdata,active FROM users WHERE email= ? and password= ?";
+        $sql = "SELECT id,userdata,active,password FROM users WHERE email= ?";
         $statement=$conn->prepare($sql);
         if($statement){
-          $statement->bind_param("ss",$email,$password);
+          $statement->bind_param("s",$email);
           $_SESSION["logMail"] = $email;
 
           if($statement->execute()){
@@ -126,15 +126,20 @@ if (isset($_REQUEST["prihlasitSe"])){
               $data="";
               $id="";
               $isActive="";
+              $passwordDtbs="";
               while($row = mysqli_fetch_array($result)) {
                 $data=$data.$row["userdata"];
                 $id=$id.$row["id"];
                 $isActive = $row["active"];
+                $passwordDtbs=$passwordDtbs.$row["password"];
               }
               if($isActive == 0){
                 $loginMessage = "Account is not activated!";
                 $correctDetails = false;
               }
+              elseif(password_verify($passwordDtbs, $password)){
+                  $correctDetails = false;
+                }
               else{
                 $prihlaseno=true;
                 $data=str_replace("\"","'",$data);
@@ -410,7 +415,7 @@ if (isset($_REQUEST["prihlasitSe"])){
     <h2 class="modalInfoNadpis" id="modalInfoNadpis">Tutorial</h2>
     <div class="modalInfoKontejner">
     <img id="modalImage" src="tutorial1.png" alt="tutorial" style="width: 85%; height: auto;">
-    <button class="hlavniStranabtn" style="float: right; width: 15%; padding-right:1%; font-size:2rem; text-decoration:none;"><span id="tutorialCislo">1/6</span><br><u id="tutorialNext">Next</u></button>
+    <button class="hlavniStranabtn" style="float: right; width: 15%; padding-right:1%; font-size:2rem; text-decoration:none;"><span id="tutorialCislo">1/7</span><br><u id="tutorialNext">Next</u></button>
     <div style="clear: both;"></div>
       </div>
     <div id="zobrazitZnova"></div>

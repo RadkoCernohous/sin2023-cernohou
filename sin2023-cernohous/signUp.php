@@ -3,7 +3,7 @@ $serverIP="127.0.0.1";
 $username="root";
 $dtbsPassword="";
 $dtbsName="sin2023-cernohous"; 
-$url = "http://127.0.0.1/cernohous/sin2023-cernohous/index.php"; //Změnit url adresu
+$url = "http://127.0.0.1/cernohous/sin2023-cernohous/sin2023-cernohous/index.php"; //Změnit url adresu
 session_start();
 
 $registrace = false;
@@ -43,6 +43,7 @@ if (isset($_REQUEST["registrovat"])){
                         $email =trim($_REQUEST["registraceEmail"]);
                         $username=trim($_REQUEST["registraceJmeno"]);
                         $password=trim($_REQUEST["registraceHeslo"]);
+                        $password=password_hash($password, PASSWORD_DEFAULT);
                         $jsInfo ="{\"jmeno\":\"".$username."\",".file_get_contents("users-userdata.bin");
                         //$jsInfo="test";
                         $_SESSION["email"] = $email;

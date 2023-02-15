@@ -98,9 +98,9 @@ if(isset($_REQUEST["prihlasitSe"]) and isset($_REQUEST["prihlaseniEmail"]) and i
   }
   
   $conn->set_charset("utf8mb4");
-  $sql = "SELECT userdata,active FROM users WHERE email= ? and password= ?";
+  $sql = "SELECT userdata,active,password FROM users WHERE email= ?";
   $statement = $conn->prepare($sql);
-  $statement->bind_param("ss",$_SESSION["email2"],$_SESSION["heslo2"]);
+  $statement->bind_param("s",$_SESSION["email2"]);
   if($statement->execute()){
     $result = $statement->get_result();
     if (mysqli_num_rows($result) > 0) {
@@ -109,10 +109,15 @@ if(isset($_REQUEST["prihlasitSe"]) and isset($_REQUEST["prihlaseniEmail"]) and i
       while($row = mysqli_fetch_array($result)) {
         $_SESSION["active2"]=$_SESSION["data2"].$row["active"];
         $_SESSION["data2"]=$_SESSION["data2"].$row["userdata"];
+        $passwordDtbs=$passwordDtbs.$row["password"];
       }
       if($_SESSION["active2"]==0){
         $_SESSION["prihlaseno"]=false;
         $message="Account not activated!";
+      }
+      elseif(password_verify($passwordDtbs, $_SESSION["heslo2"])){
+        $message="Incorrect credentials!";
+        $correctDetails = false;
       }
       else{
         $_SESSION["prihlaseno"]=true;

@@ -139,19 +139,19 @@ class Aplikace {
     this.generovatNabidkuJazyku();
     this.generovatPopisPrehled();
     this.generovaniVysledkuTest();
-    //console.log(this.#prihlasenyUzivatel)
+    console.log(this.#prihlasenyUzivatel)
     this.odpocet = this.zacitOdpocet();
 
     tutorialNext.addEventListener("click", function () {
       let cisloObrazku = parseInt(tutorialCislo.textContent[0]);
-      if (cisloObrazku < 2) {
+      if (cisloObrazku < 7) {
         modalImage.src = `tutorial${cisloObrazku + 1}.png`;
-        tutorialCislo.textContent = `${cisloObrazku + 1}/6`;
+        tutorialCislo.textContent = `${cisloObrazku + 1}/7`;
       }
       else {
         zavritInfoModal.click();
         modalImage.src = `tutorial1.png`;
-        tutorialCislo.textContent = `1/6`;
+        tutorialCislo.textContent = `1/7`;
       }
       clearInterval(this.odpocet);
       this.odpocet = this.zacitOdpocet();
@@ -329,7 +329,7 @@ class Aplikace {
       e.preventDefault();
       this.zobrazitInfo(0);
       modalImage.src = `tutorial1.png`;
-      tutorialCislo.textContent = `1/6`;
+      tutorialCislo.textContent = `1/7`;
       clearInterval(this.odpocet);
       this.odpocet = this.zacitOdpocet();
     }.bind(this))
@@ -342,7 +342,7 @@ class Aplikace {
         right: 20px;
         font - size: 1.5rem;
         cursor: pointer;
-        display: none; // initially the arrow is hidden`;
+        display: none;`;
 
     document.body.appendChild(arrow);
     window.addEventListener('scroll', function () {
@@ -527,8 +527,14 @@ class Aplikace {
 
   smazatTest(e) {
     e.preventDefault();
+    if (this.#prihlasenyUzivatel.zaznamyTestu.length == 0) {
+      return;
+    }
     let procentoSmazanychOtazek = inputSmazaniTestu.value;
     let pocetSmazanychOtazek = Math.round(this.#prihlasenyUzivatel.zaznamyTestu.length * (procentoSmazanychOtazek / 100));
+    if (pocetSmazanychOtazek == 0 && this.#prihlasenyUzivatel.zaznamyTestu.length > 0) {
+      pocetSmazanychOtazek = 1;
+    }
     let potvrzeni = confirm(`Do you really want to delete oldest ${pocetSmazanychOtazek} test results?`);
     if (potvrzeni == true) {
       this.#prihlasenyUzivatel.zaznamyTestu.splice(0, pocetSmazanychOtazek);
@@ -1195,6 +1201,9 @@ class Aplikace {
       this.#prihlasenyUzivatel.arr3 = prekladanaDvojice;
       if (!this.#prihlasenyUzivatel.slovaVTestu.includes(this.#prihlasenyUzivatel.slovoSibenice)) {
         pokracovat = true;
+      }
+      if (this.#prihlasenyUzivatel.slovoSibenice.length < 2) {
+        pokracovat = false;
       }
     }
     this.#prihlasenyUzivatel.slovaVTestu.push(this.#prihlasenyUzivatel.slovoSibenice);

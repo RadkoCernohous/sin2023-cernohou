@@ -3,7 +3,7 @@ $serverIP="127.0.0.1";
 $username="root";
 $dtbsPassword="";
 $dtbsName="sin2023-cernohous";
-$url = "http://127.0.0.1/cernohous/sin2023-cernohous/index.php"; //Změnit URL
+$url = "http://127.0.0.1/cernohous/sin2023-cernohous/sin2023-cernohous/index.php"; //Změnit URL
 session_start();
 $data = $_POST["schovanyKontejner"];
 
