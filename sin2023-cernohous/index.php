@@ -30,7 +30,7 @@
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"
 ></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<title>Document</title>
+<title>Langlet</title>
 </head>
 <body>
 <div class="body"> 

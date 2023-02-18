@@ -1020,6 +1020,7 @@ class Aplikace {
 
   zacitOdpocet() {
     let sekunda = function () {
+
       let min = String(Math.trunc(cas / 60)).padStart(2, 0);
       let sec = String(cas % 60).padStart(2, 0);
 
@@ -1027,7 +1028,7 @@ class Aplikace {
 
       if (cas === 0) {
         clearInterval(odpocet);
-        odhlasitUzivatele();
+        odhlasitUzivatele.bind(this)();
       }
 
       cas--;
@@ -1035,9 +1036,9 @@ class Aplikace {
 
     let cas = 600;
     let odhlasitUzivatele = this.odhlasitUzivatele;
-    sekunda();
+    sekunda.bind(this)();
 
-    let odpocet = setInterval(sekunda, 1000);
+    let odpocet = setInterval(sekunda.bind(this), 1000);
 
     return odpocet;
   }
@@ -1072,11 +1073,13 @@ class Aplikace {
       pole[0][j] = j;
     }
 
+
     for (let i = 1; i <= slovoZadane.length; i++) {
       for (let j = 1; j <= slovoOriginal.length; j++) {
         if (slovoZadane.charAt(i - 1) == slovoOriginal.charAt(j - 1)) {
           pole[i][j] = pole[i - 1][j - 1];
-        } else {
+        }
+        else {
           pole[i][j] = Math.min(pole[i - 1][j - 1] + 1, pole[i][j - 1] + 1, pole[i - 1][j] + 1);
         }
       }
