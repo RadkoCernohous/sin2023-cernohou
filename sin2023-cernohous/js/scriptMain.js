@@ -16,6 +16,7 @@ const modalInfoText = document.getElementById("modalInfoText");
 const zavritInfoModal = document.getElementById("zavritInfoModal");
 const zobrazitZnova = document.getElementById("zobrazitZnova");
 const tutorialNext = document.getElementById("tutorialNext");
+const tutorialPrevious = document.getElementById("tutorialPrevious");
 const modalImage = document.getElementById("modalImage");
 const tutorialCislo = document.getElementById("tutorialCislo");
 
@@ -152,6 +153,16 @@ class Aplikace {
         zavritInfoModal.click();
         modalImage.src = `tutorial1.png`;
         tutorialCislo.textContent = `1/7`;
+      }
+      clearInterval(this.odpocet);
+      this.odpocet = this.zacitOdpocet();
+    }.bind(this))
+
+    tutorialPrevious.addEventListener("click", function () {
+      let cisloObrazku = parseInt(tutorialCislo.textContent[0]);
+      if (cisloObrazku > 1) {
+        modalImage.src = `tutorial${cisloObrazku - 1}.png`;
+        tutorialCislo.textContent = `${cisloObrazku - 1}/7`;
       }
       clearInterval(this.odpocet);
       this.odpocet = this.zacitOdpocet();
@@ -340,9 +351,10 @@ class Aplikace {
         position: fixed;
         bottom: 20px;
         right: 20px;
-        font - size: 1.5rem;
+        font-size: 1.5rem;
         cursor: pointer;
-        display: none;`;
+        display: none;
+        font-weight: 500;`;
 
     document.body.appendChild(arrow);
     window.addEventListener('scroll', function () {

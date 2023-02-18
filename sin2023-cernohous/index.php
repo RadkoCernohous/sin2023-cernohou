@@ -415,7 +415,7 @@ if (isset($_REQUEST["prihlasitSe"])){
     <h2 class="modalInfoNadpis" id="modalInfoNadpis">Tutorial</h2>
     <div class="modalInfoKontejner">
     <img id="modalImage" src="tutorial1.png" alt="tutorial" style="width: 85%; height: auto;">
-    <button class="hlavniStranabtn" style="float: right; width: 15%; padding-right:1%; font-size:2rem; text-decoration:none;"><span id="tutorialCislo">1/7</span><br><u id="tutorialNext">Next</u></button>
+    <button class="hlavniStranabtn" style="float: right; width: 15%; padding-right:1%; font-size:2rem; text-decoration:none;"><span id="tutorialCislo">1/7</span><br><u id="tutorialNext">Next</u><br><u id="tutorialPrevious">Previous</u></button>
     <div style="clear: both;"></div>
       </div>
     <div id="zobrazitZnova"></div>
