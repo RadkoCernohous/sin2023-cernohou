@@ -1,0 +1,965 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  color: #444;
+  background-color: rgb(248, 248, 248);
+  padding: 1% 20%;
+}
+
+.schovane {
+  display: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-bottom: 4%;
+}
+
+
+
+.jmeno {
+  margin: 0%;
+  font-weight: 500;
+  font-size: 100%;
+  width: 20%;
+  animation: fadeIn ease-in-out 1s;
+}
+
+h1 {
+  font-weight: bolder;
+  font-size: 300%;
+  width: 60%;
+  text-align: center;
+  opacity: 0;
+  opacity: 1;
+  animation: fadeIn ease-in-out 1s;
+}
+
+#logout {
+  animation: fadeIn ease-in-out 1s;
+}
+
+
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+
+.h1UvodniStrana {
+  font-size: 350%;
+  display: block;
+  width: 100%;
+}
+
+.odhlasit {
+  font-size: 100%;
+  font-weight: 500;
+  border: none;
+  color: #444;
+  width: 20%;
+  text-align: end;
+}
+
+.odhlasit input:hover {
+  color: black;
+  text-decoration: none;
+}
+
+
+@media screen and (max-width: 992px) {
+
+  body {
+    padding: 1% 5%;
+  }
+
+  header {
+    justify-content: center;
+
+  }
+
+  h1 {
+    order: 1;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .jmeno {
+    order: 2;
+    margin-right: auto;
+  }
+
+  .odhlasit {
+    order: 3;
+  }
+
+}
+
+.popisStranky {
+  display: block;
+  width: 90%;
+  margin-bottom: 7%;
+  text-align: justify;
+}
+
+.hlavniStrana h2 {
+  font-size: 150%;
+  text-align: center;
+}
+
+.hlavniStrana {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  animation: fadeIn ease-in-out 2.3s;
+}
+
+.prihlaseni {
+  background-image: linear-gradient(to top left, #39b385, #9be15d);
+  padding: 2%;
+  border-radius: 1rem;
+  width: 40%;
+}
+
+.registrace {
+  background-image: linear-gradient(to top left, #bac51b, #d0f308);
+  padding: 2%;
+  border-radius: 1rem;
+  width: 40%;
+}
+
+.hlavniStranaInput {
+  width: 100%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.4);
+  font-size: 120%;
+  text-align: center;
+  color: #444;
+  padding: 2% 5%;
+  border-radius: 0.7rem;
+  transition: all 0.3s;
+  margin-bottom: 5%;
+}
+
+.hlavniStranaInput:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.hlavniStranabtn {
+  border-radius: 0.7rem;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  color: #444;
+  padding: 1%;
+  font-size: 130%;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.hlavniStranabtn:hover,
+#tutorialNext:hover,
+#tutorialPrevious:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  color: black;
+  text-decoration: none;
+}
+
+.btnUprostred {
+  text-align: center;
+}
+
+
+.prihlaseni input:-webkit-autofill {
+  -webkit-text-fill-color: black;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+
+
+.registrace input:-webkit-autofill {
+  -webkit-text-fill-color: black;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.soucasnyMod {
+  width: 90%;
+  text-align: end;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 992px) {
+
+  .prihlaseni,
+  .registrace,
+  .soucasnyMod {
+    width: 100%;
+    margin-bottom: 5%;
+  }
+
+  .soucasnyMod {
+    text-align: start;
+  }
+
+}
+
+.vyberLekceJazyk {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 5%;
+}
+
+.selectLekciJazyku {
+  border: none;
+  border-radius: 0.3rem;
+  background-color: #f8f9fa;
+  transition: all 0.3s;
+  max-height: 3em;
+  overflow-y: scroll;
+}
+
+.selectLekciJazyku:focus,
+.selectLekciJazyku:hover {
+  background-color: #ededf0;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.vybratJazyk {
+  width: 40%;
+  text-align: end;
+  margin-bottom: 3%;
+}
+
+.vybratLekci {
+  width: 40%;
+  text-align: start;
+  margin-bottom: 3%;
+}
+
+.vybratJazyk option,
+.vybratLekci option {
+  background-color: rgb(110, 184, 110);
+}
+
+
+@media screen and (max-width: 1000px) {
+
+  .vybratJazyk,
+  .vybratLekci {
+    width: 100%;
+    padding-left: 5%;
+  }
+
+  .vybratJazyk {
+    text-align: start;
+    margin-bottom: 0%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+
+  .vybratJazyk,
+  .vybratLekci {
+    padding-left: 0%;
+  }
+}
+
+.nadpisVybratJazyk,
+.nadpisVybratLekci {
+  font-size: 130%;
+}
+
+
+
+.druhaStrana {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  animation: fadeIn ease-in-out 2.3s;
+}
+
+
+
+
+
+
+.formPreklad1,
+.formPreklad2,
+.formVyberZe3,
+.formSibenice,
+.nastaveniTestu {
+  padding: 2%;
+  margin-bottom: 5%;
+  border-radius: 1rem;
+  width: 40%;
+}
+
+
+.formPreklad1 {
+  background-image: linear-gradient(to top left, #587bb1, #5f8eb4);
+}
+
+.formPreklad2 {
+  background-image: linear-gradient(to top left, #ca96a4, #d4afb9);
+}
+
+.formVyberZe3 {
+  background-image: linear-gradient(to top left, #ffb003, #ffcb03);
+}
+
+.formSibenice {
+  background-image: linear-gradient(to top left, #38aa91, #33c292);
+}
+
+.nastaveniTestu,
+.vysledkyTestu {
+  background-image: linear-gradient(to top left, #F08080, #E9967A);
+}
+
+
+
+.nastaveniTestuNadpis {
+  width: 100%;
+  text-align: center;
+}
+
+.labelVybratPocetOtazek {
+  margin-left: 1%;
+}
+
+.vybratPocetOtazek {
+  margin-left: 1%;
+  margin-bottom: 4%;
+  border: none;
+  border-radius: 0.3rem;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.6);
+  transition: background-color 0.5s ease-in-out;
+}
+
+.vybratPocetOtazek:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+
+.prehled {
+  padding: 2%;
+  margin-bottom: 5%;
+  border-radius: 1rem;
+  width: 90%;
+}
+
+.prehled {
+  background-image: linear-gradient(to top left, #f1d1cb, #d6e7e2);
+}
+
+
+.vyberZe3Radek {
+  text-align: center;
+  font-size: 130%;
+  border-radius: 0.7rem;
+  margin-bottom: 2%;
+  overflow-wrap: break-word;
+}
+
+
+.slovo {
+  font-size: 150%;
+  font-weight: 500;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.druhaStranaInput {
+  width: 78%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.4);
+  font-size: 120%;
+  text-align: center;
+  color: #444;
+  padding: 2% 5%;
+  border-radius: 0.7rem;
+  transition: all 0.3s;
+  margin-bottom: 5%;
+}
+
+.druhaStranaInput:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.druhaStranabtn {
+  border-radius: 0.7rem;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  color: #444;
+  padding: 1%;
+  padding-bottom: 1.3%;
+  font-size: 150%;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.druhaStranabtn:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.vyberZe3Radek:hover:not(.vyberZe3RadekSpatne),
+.vyberZe3Radek:focus {
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: all 0.1s ease-in-out;
+}
+
+.vyberZe3RadekSpatne {
+  background-color: rgb(199, 95, 95);
+}
+
+.vyberZe3Radek a,
+.vyberZe3Radek a:hover,
+.prehledRadek a,
+.prehledRadek a:hover {
+  color: #444;
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+
+}
+
+@media screen and (max-width: 992px) {
+
+  .formPreklad1,
+  .formPreklad2,
+  .formSibenice,
+  .formVyberZe3,
+  .nastaveniTestu {
+    width: 100%;
+    margin-bottom: 5%;
+  }
+
+
+  .druhaStranaInput {
+    width: 85%;
+  }
+
+  .vyberZe3Radek {
+    padding-top: 3%;
+    padding-bottom: 3%;
+  }
+
+  .slovo {
+    text-align: center;
+  }
+}
+
+.sibenice {
+  letter-spacing: 0.3rem;
+}
+
+.prehledNadpis {
+  text-align: center;
+  margin: 0%;
+}
+
+.prehledRadek {
+  border-radius: 0.7rem;
+  margin-bottom: 1%;
+}
+
+.prehledZpet {
+  background-color: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.prehledZpet:hover,
+.prehledRadek:hover {
+  background-color: #7bccad;
+  transition: all 0.3s ease-in-out;
+}
+
+.prehledRadek a {
+  padding: 2%;
+  padding-left: 1%;
+}
+
+
+#odstranit {
+  margin-left: 0.9%;
+}
+
+#odstranit:hover {
+  cursor: pointer;
+}
+
+.prehledZpet {
+  border: none;
+  background: none;
+  padding: 1% 1% 1% 1%;
+  border-radius: 0.7rem;
+  color: #444;
+}
+
+.prehledKontejner {
+  overflow: auto;
+  max-height: 20rem;
+}
+
+.prehledSlova a,
+.prehledSlova a:hover {
+  color: #444;
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+  padding: 2%;
+}
+
+.prehledSlova {
+  display: inline-flex;
+  width: 49%;
+}
+
+
+.prehledSlovaRadek {
+  border-radius: 0.7rem;
+  overflow-wrap: break-word;
+}
+
+.prehledSlovaRadek:hover {
+  background-color: #7bccad;
+  transition: all 0.2s ease-in;
+}
+
+.vysledkyTestu {
+  padding: 2%;
+  margin-bottom: 5%;
+  border-radius: 1rem;
+  width: 90%;
+}
+
+.filtorvaniVysledku {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.popisvysledkyTestuFilter {
+  width: 15%;
+  padding-left: 0.35%;
+}
+
+#vysledkyTestuFilter {
+  width: 50%;
+  max-height: 1rem;
+  padding-left: 0.5%;
+  padding-right: 0.5%;
+  margin: 0%;
+}
+
+.vysledkyTestuKontejner {
+  overflow: auto;
+  max-height: 15rem;
+}
+
+.vysledkyTestuRadek {
+  border-radius: 0.7rem;
+  overflow-wrap: break-word;
+}
+
+.vysledkyTestuRadek:hover {
+  background-color: #FFC300;
+  transition: all 0.2s ease-in;
+}
+
+.vysledkyTestuRadekElement a,
+.vysledkyTestuRadekElement a:hover {
+  color: #444;
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+  padding: 2%;
+}
+
+.datumTestu {
+  display: inline-flex;
+  width: 17%;
+}
+
+.jazykTestu {
+  display: inline-flex;
+  width: 35%;
+}
+
+.lekceTestu {
+  display: inline-flex;
+  width: 35%;
+}
+
+.hodnoceniTestu {
+  display: inline-flex;
+  width: 10%;
+  white-space: nowrap;
+}
+
+.smazaniTestu {
+  margin-top: 4%;
+  padding-left: 1%;
+}
+
+.inputRange {
+  width: 30%;
+}
+
+@media screen and (max-width: 992px) {
+  .prehled {
+    width: 100%;
+  }
+
+  .vysledkyTestu {
+    width: 100%;
+  }
+
+  .vysledkyTestuRadek {
+    overflow-wrap: normal;
+    border-bottom: 0.2rem solid #444;
+    border-radius: 0rem;
+  }
+
+  .datumTestu {
+    display: inline-flex;
+    width: 40%;
+  }
+
+  .jazykTestu {
+    display: inline-flex;
+    width: 40%;
+  }
+
+  .lekceTestu {
+    display: inline-flex;
+    width: 40%;
+  }
+
+
+  #odstranit {
+    margin-top: 5%;
+  }
+
+  .popisvysledkyTestuFilter {
+    width: 100%;
+  }
+
+  #vysledkyTestuFilter {
+    width: 100%;
+    max-height: 2rem;
+  }
+}
+
+.pridaniJazyka,
+.pridaniLekce,
+.pridaniSlova {
+  background-image: linear-gradient(to top left, #9baee0, #8fa3d4);
+  padding: 2%;
+  margin-bottom: 5%;
+  border-radius: 1rem;
+  width: 40%;
+}
+
+
+
+#pridaniSlovavybratLekci,
+#pridaniJazykavybratJazyk {
+  margin-bottom: 5%;
+}
+
+.pridaniJazyka input:-webkit-autofill {
+  -webkit-text-fill-color: black;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+
+
+.pridaniLekce input:-webkit-autofill {
+  -webkit-text-fill-color: black;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.pridaniSlova input:-webkit-autofill {
+  -webkit-text-fill-color: black;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+
+.cervene {
+  text-align: center;
+  color: black;
+  margin-top: 3%;
+  margin-left: 1%;
+  background-color: rgb(197, 97, 97);
+  border-radius: 0.7rem;
+}
+
+footer {
+  border-radius: 0.7rem;
+  background-color: rgb(119, 118, 119);
+  color: white;
+  text-align: center;
+  font-size: 150%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 1%;
+  padding-top: 1%;
+  padding-bottom: 1.2%;
+  animation: fadeIn ease-in-out 3.3s;
+}
+
+.sdilet {
+  margin-top: 5%;
+}
+
+footer p {
+  margin: 0%;
+}
+
+#odpocetLogout {
+  width: 90%;
+  text-align: end;
+  margin-bottom: 1%;
+}
+
+@media screen and (max-width: 992px) {
+
+  footer {
+    width: 100%;
+    margin: 0%;
+  }
+
+  #odpocetLogout {
+    width: 100%;
+    text-align: start;
+  }
+}
+
+b {
+  color: #444;
+}
+
+.sdileni {
+  background-image: linear-gradient(to top left, #f6ac69, #f6bc66);
+  padding: 2%;
+  margin-bottom: 5%;
+  border-radius: 1rem;
+  width: 40%;
+}
+
+.vyberSdileni {
+  margin-bottom: 1%;
+}
+
+.typSdileniLekce {
+  margin-bottom: 5%;
+}
+
+#btnVytvoritLink {
+  margin-top: 5%;
+}
+
+#sdileniLink {
+  margin-top: 0%;
+  overflow-wrap: break-word;
+}
+
+.kopirovatbtn {
+  text-decoration: none;
+  border-radius: 0.7rem;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  color: #444;
+  padding: 1%;
+  padding-bottom: 1.3%;
+  font-size: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.kopirovatbtn:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+@media screen and (max-width: 992px) {
+
+  .pridaniJazyka,
+  .pridaniLekce,
+  .pridaniSlova,
+  .sdileni {
+    width: 100%;
+  }
+
+}
+
+.popis {
+  font-size: 100%;
+  margin-bottom: 0%;
+  padding-bottom: 0%;
+  color: black;
+}
+
+
+b .popis {
+  color: black;
+}
+
+.prehledPopis {
+  text-align: center;
+  font-weight: bold;
+}
+
+
+
+/* The Modal (background) */
+.modalVysledky,
+.modalInfo {
+  display: none;
+  /* Hidden by default */
+  opacity: 0;
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+
+.modalObsah,
+.modalInfoObsah {
+
+  background-color: #fefefe;
+  margin: auto;
+  margin-top: 10%;
+  padding: 2%;
+  padding-top: 0%;
+  border: 1px solid #888;
+  width: 30%;
+  border-radius: 1rem;
+}
+
+.modalInfoObsah {
+  width: 80%;
+  margin-top: 5%;
+}
+
+.zavritModal,
+.zavritInfoModal {
+  color: #aaaaaa;
+  float: right;
+  font-size: 200%;
+  font-weight: bold;
+  padding: 0%;
+  margin: 0%;
+  transition: all 0.3s ease-in-out;
+}
+
+.zavritModal:hover,
+.zavritModal:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#zavritInfoModal:hover,
+#zavritInfoModal:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modalVysledkyNadpis,
+.modalInfoNadpis {
+  margin-top: 2%;
+  width: 100%;
+  text-align: center;
+}
+
+.modalInfoNadpis {
+  font-size: 3rem;
+}
+
+.aktualizovatSlovicka {
+  width: 90%;
+  text-align: right;
+  display: block;
+}
+
+.ukazatManual {
+  width: 92%;
+  text-align: right;
+}
+
+
+
+
+@media screen and (max-width: 992px) {
+  .modalObsah {
+    width: 80%;
+  }
+
+  .modalInfoObsah {
+    width: 100%;
+  }
+
+  .modalVysledkyNadpis,
+  .modalInfoNadpis {
+    margin-top: 10%;
+  }
+
+  .modalInfoText {
+    text-align: justify;
+  }
+
+  .ukazatManual,
+  .aktualizovatSlovicka {
+    width: 100%;
+    text-align: left;
+  }
+}
