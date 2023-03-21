@@ -3,6 +3,7 @@ $serverIP="127.0.0.1";
 $username="root";
 $dtbsPassword="";
 $dtbsName="sin2023-cernohous";
+$tableName="langlet";
  ?>
  <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +59,7 @@ if(isset($_REQUEST["id"]) and isset($_REQUEST["type"]) and isset($_REQUEST["lang
   }
 
   $conn->set_charset("utf8mb4");
-  $sql = "SELECT userdata FROM users WHERE id= ?"; 
+  $sql = "SELECT userdata FROM ".$tableName." WHERE id= ?"; 
 
 
   $statement = $conn->prepare($sql);
@@ -98,7 +99,7 @@ if(isset($_REQUEST["prihlasitSe"]) and isset($_REQUEST["prihlaseniEmail"]) and i
   }
   
   $conn->set_charset("utf8mb4");
-  $sql = "SELECT userdata,active,password FROM users WHERE email= ?";
+  $sql = "SELECT userdata,active,password FROM ".$tableName." WHERE email= ?";
   $statement = $conn->prepare($sql);
   $statement->bind_param("s",$_SESSION["email2"]);
   if($statement->execute()){

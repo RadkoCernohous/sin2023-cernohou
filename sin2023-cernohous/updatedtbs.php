@@ -3,6 +3,8 @@ $serverIP="127.0.0.1";
 $username="root";
 $dtbsPassword="";
 $dtbsName="sin2023-cernohous";
+$tableName="langlet";
+
 session_start();
 $data = $_POST["schovanyKontejner3"];
 
@@ -15,7 +17,7 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = 'UPDATE users SET userdata = ? WHERE email= ?';   
+$sql = 'UPDATE ".$tableName." SET userdata = ? WHERE email= ?';   
 $email =$_SESSION["logMail"];
     
     

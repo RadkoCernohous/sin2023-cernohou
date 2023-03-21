@@ -1009,7 +1009,8 @@ class Aplikace {
     if (jazyk == "jazyk") {
       return
     }
-    let link = `http://127.0.0.1/sin2023/sin2023-cernohous/HTMLshare.php?id=${schovanyKontejner2.value}&`;
+    let link = `http://127.0.0.1/cernohous/sin2023-cernohous/sin2023-cernohous/HTMLshare.php`;  //změnit URL adresu aby odkazovala na HTMLshare.php
+    link += `?id=${schovanyKontejner2.value}&`;
     if (sdileniTypJazyk.checked == true) {
       link += `type=language&language=${jazyk}&lesson=""&name=${this.#prihlasenyUzivatel.jmeno}`;
       btnKopirovatLink.hidden = false;
@@ -1230,9 +1231,9 @@ class Aplikace {
     if ((this.#prihlasenyUzivatel.sibenicePismena.length - 2) <= 1) {
       napoveda = 2;
     }
-	else if(this.#prihlasenyUzivatel.sibenicePismena.includes(" ")){
-	  napoveda = this.#prihlasenyUzivatel.sibenicePismena.length - 2;	  
-	}	  
+    else if (this.#prihlasenyUzivatel.sibenicePismena.includes(" ")) {
+      napoveda = this.#prihlasenyUzivatel.sibenicePismena.length - 2;
+    }
     else {
       napoveda = this.#prihlasenyUzivatel.sibenicePismena.length - 1;
     }

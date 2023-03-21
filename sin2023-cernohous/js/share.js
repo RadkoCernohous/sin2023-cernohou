@@ -33,7 +33,7 @@ if (typ == "lesson") {
 }
 
 if (error1 == true) {
-  errorKontejner.innerHTML = `Unfortunately, this ${typ} doesn´t exist anymore<br> <a class="hlavniStranabtn" style="color: white; padding: 0.1rem;" href="http://127.0.0.1/sin2023/sin2023-cernohous/index.php">Go to Langlet</a>`;
+  errorKontejner.innerHTML = `Unfortunately, this ${typ} doesn´t exist anymore<br> <a class="hlavniStranabtn" style="color: white; padding: 0.1rem;" href="http://127.0.0.1/cernohous/sin2023-cernohous/sin2023-cernohous/index.php">Go to Langlet</a>`; //změnit URL adresu aby odkazovala na index.php
   errorKontejner.hidden = false;
 }
 else if (kontejner2.value) {

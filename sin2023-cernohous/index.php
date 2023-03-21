@@ -3,6 +3,7 @@
  $username="root";
  $dtbsPassword="";
  $dtbsName="sin2023-cernohous";
+ $tableName="langlet";
  ?>
  
  <!DOCTYPE html>
@@ -66,7 +67,7 @@ if(isset($_REQUEST["reg"]) and isset($_REQUEST["email"]) and isset($_REQUEST["ps
   }
 
   $conn->set_charset("utf8mb4");
-  $sql = "SELECT id,userdata,password  FROM users WHERE email= ?";
+  $sql = "SELECT id,userdata,password  FROM ".$tableName." WHERE email= ?";
   $statement=$conn->prepare($sql);
 
   if($statement){
@@ -114,7 +115,7 @@ if (isset($_REQUEST["prihlasitSe"])){
         $conn->set_charset("utf8mb4");
         
         //prepare and execute sql 
-        $sql = "SELECT id,userdata,active,password FROM users WHERE email= ?";
+        $sql = "SELECT id,userdata,active,password FROM ".$tableName." WHERE email= ?";
         $statement=$conn->prepare($sql);
         if($statement){
           $statement->bind_param("s",$email);

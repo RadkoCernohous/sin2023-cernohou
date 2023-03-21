@@ -3,7 +3,9 @@ $serverIP="127.0.0.1";
 $username="root";
 $dtbsPassword="";
 $dtbsName="sin2023-cernohous";
-$url = "http://127.0.0.1/sin2023/sin2023-cernohous/index.php?reg=1&email="; //Změnit URL
+$tableName="langlet";
+$url = "http://127.0.0.1/cernohous/sin2023-cernohous/sin2023-cernohous/index.php"; //Změnit URL adresu (aby odkazovala na index.php)
+
 session_start();
 
 
@@ -18,7 +20,7 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = 'UPDATE users SET userdata = ? WHERE email= ?';   
+$sql = 'UPDATE ".$tableName." SET userdata = ? WHERE email= ?';   
 $email =$_SESSION["email2"];
     
     
@@ -28,7 +30,7 @@ if($statement->execute()){
   //echo "data succesfully saved";
 }
 mysqli_close($conn);
-$url =$url.$_SESSION["email2"]."&psw=".$_SESSION["passwordDtbs"];
+$url =$url."?reg=1&email=".$_SESSION["email2"]."&psw=".$_SESSION["passwordDtbs"];
 session_destroy();
 header("Location: ".$url);
    

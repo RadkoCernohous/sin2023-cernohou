@@ -2,8 +2,10 @@
 $serverIP="127.0.0.1";
 $username="root";
 $dtbsPassword="";
-$dtbsName="sin2023-cernohous"; 
-$url = "http://127.0.0.1/sin2023/sin2023-cernohous/index.php"; //Změnit url adresu
+$dtbsName="sin2023-cernohous";
+$tableName="langlet";
+$url = "http://127.0.0.1/cernohous/sin2023-cernohous/sin2023-cernohous/index.php"; //Změnit url adresu (aby odkazovala na index.php)
+
 session_start();
 
 $registrace = false;
@@ -48,7 +50,7 @@ if (isset($_REQUEST["registrovat"])){
                         //$jsInfo="test";
                         $_SESSION["email"] = $email;
 
-                        $sql = 'SELECT email FROM users WHERE email= ?';
+                        $sql = 'SELECT email FROM ".$tableName." WHERE email= ?';
                         $statement = $conn->prepare($sql);
                         if($statement){
                             $statement->bind_param("s",$email);
@@ -60,7 +62,7 @@ if (isset($_REQUEST["registrovat"])){
     
                         if (mysqli_num_rows($result) == 0) { 
                                                       
-                            $sql = "INSERT INTO users (username,email, password, isAdmin, activationCode, activationExpiry, userdata) VALUES (?,?,?,?,?,\"".date('Y-m-d H:i:s',  time() + $expire)."\",?)";
+                            $sql = "INSERT INTO ".$tableName." (username,email, password, isAdmin, activationCode, activationExpiry, userdata) VALUES (?,?,?,?,?,\"".date('Y-m-d H:i:s',  time() + $expire)."\",?)";
                             $statement = $conn->prepare($sql);
                             $statement->bind_param("sssiss",$username,$email,$password,$isAdmin,$activationCode,$jsInfo);
 
