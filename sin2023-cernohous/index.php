@@ -178,7 +178,7 @@ if (isset($_REQUEST["prihlasitSe"])){
 </header>
 <main>
   <div <?php if($prihlaseno===true){print("hidden");} ?> class="hlavniStrana ">
-    <p class="popisStranky">Welcome to Langlet, your vocabulary learning helper. Langlet helps you to organize, practise,test and also share the vocabulary with friends. Let's get started now, by Loggin-in or Signing-up.</p>
+    <p class="popisStranky">Welcome to Langlet, your vocabulary learning helper. Langlet helps you to organize, practise, test and also share the vocabulary with friends. Let's get started now, by Loggin-in or Signing-up.</p>
     <form action="<?php echo basename($_SERVER["PHP_SELF"]) ?>" class="prihlaseni" method="post">
       <h2>Log-in</h2>
       <label for="prihlaseniEmail">E.mail</label>
@@ -198,11 +198,11 @@ if (isset($_REQUEST["prihlasitSe"])){
       <h2>Sign-up</h2>
       <label for="registraceJmeno">Username</label>
       <br>
-      <input type="text" class="hlavniStranaInput" id="registraceJmeno" name="registraceJmeno">
+      <input type="text" class="hlavniStranaInput" id="registraceJmeno" name="registraceJmeno" <?php if(isset($_SESSION["username"])){print('value="'.$_SESSION["username"].'"');} ?>>
       <br>
       <label for="registraceEmail">E-mail</label>
       <br>
-      <input type="email" id="registraceEmail" name="registraceEmail" class="hlavniStranaInput">
+      <input type="email" id="registraceEmail" name="registraceEmail" class="hlavniStranaInput" <?php if(isset($_SESSION["email"])){print('value="'.$_SESSION["email"].'"');} ?>>
       <br>
       <label for="registraceHeslo">Password</label>
       <br>

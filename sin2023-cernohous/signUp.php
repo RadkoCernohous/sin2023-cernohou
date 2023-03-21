@@ -24,7 +24,9 @@ $activationCode = generateCode();
 $_SESSION["code"] = $activationCode;
 if (isset($_REQUEST["registrovat"])){
     if(isset($_REQUEST["registraceJmeno"]) and $_REQUEST["registraceJmeno"] != ""){
+        $_SESSION["username"]=$_REQUEST["registraceJmeno"];
         if(isset($_REQUEST["registraceEmail"]) and $_REQUEST["registraceEmail"] != ""){
+            $_SESSION["email"] = $_REQUEST["registraceEmail"];
             if(isset($_REQUEST["registraceHeslo"])and $_REQUEST["registraceHeslo"] != ""){
                 if(isset($_REQUEST["registraceHesloPotrvdit"])and $_REQUEST["registraceHesloPotrvdit"] != ""){
                     $pswd = $_REQUEST["registraceHeslo"];
@@ -48,9 +50,10 @@ if (isset($_REQUEST["registrovat"])){
                         $password=password_hash($password, PASSWORD_DEFAULT);
                         $jsInfo ="{\"jmeno\":\"".$username."\",".file_get_contents("users-userdata.bin");
                         //$jsInfo="test";
-                        $_SESSION["email"] = $email;
+                        $_SESSION["logmail"] = $email;
+                                           
 
-                        $sql = 'SELECT email FROM ".$tableName." WHERE email= ?';
+                        $sql = 'SELECT email FROM '.$tableName.' WHERE email= ?';
                         $statement = $conn->prepare($sql);
                         if($statement){
                             $statement->bind_param("s",$email);
@@ -69,7 +72,7 @@ if (isset($_REQUEST["registrovat"])){
                             if($statement->execute()){
                                 $registrace = true;
                                 $_SESSION["registrace"] = $registrace;
-                                $url=$url."?reg=1&email=".$_SESSION["email"]."&psw=".$password;
+                                $url=$url."?reg=1&email=".$_SESSION["logmail"]."&psw=".$password;
                                 header("Location:".$url);
                                           
                             }

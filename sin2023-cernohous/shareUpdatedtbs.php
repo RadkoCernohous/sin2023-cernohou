@@ -20,7 +20,7 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = 'UPDATE ".$tableName." SET userdata = ? WHERE email= ?';   
+$sql = 'UPDATE '.$tableName.' SET userdata = ? WHERE email= ?';   
 $email =$_SESSION["email2"];
     
     
