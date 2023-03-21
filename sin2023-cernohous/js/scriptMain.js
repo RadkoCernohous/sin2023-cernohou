@@ -1,5 +1,5 @@
 'use strict';
-//zmenit link na radku 952
+//zmenit link na radku 1012
 //console.log("logged in succesfully");
 
 const schovanyKontejner = document.getElementById("schovanyKontejner");
