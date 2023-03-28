@@ -323,7 +323,7 @@ if (isset($_REQUEST["prihlasitSe"])){
         </div>
        </div>
        <div class="smazaniTestu">
-       <label for="smazaniTestu" >Select how many old test results do you want to delete:</label> <br>
+       <label for="inputSmazaniTestu" >Select how many old test results do you want to delete:</label> <br>
        <div class="inputRange">
        <input type="range"  name="inputsmazaniTestu" id="inputSmazaniTestu"> <br>
        </div> 
