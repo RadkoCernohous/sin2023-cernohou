@@ -392,6 +392,33 @@ class Aplikace {
 
   }
 
+  zavrit1(e) {
+    if (e.target == modalInfo) {
+      if (document.getElementById("neukazovatInfo")) {
+        let checkbox = document.getElementById("neukazovatInfo");
+        if (checkbox.checked == true) {
+          this.#prihlasenyUzivatel.zobrazovatInfo = false;
+          this.nacistData();
+        }
+      }
+      modalInfo.style.display = "none";
+      window.removeEventListener("click", this.zavrit1);
+      zavritInfoModal.removeEventListener("click", this.zavrit2);
+    }
+  }
+
+  zavrit2(e) {
+    if (document.getElementById("neukazovatInfo")) {
+      let checkbox = document.getElementById("neukazovatInfo");
+      if (checkbox.checked == true) {
+        this.#prihlasenyUzivatel.zobrazovatInfo = false;
+        this.nacistData();
+      }
+    }
+    modalInfo.style.display = "none";
+    zavritInfoModal.removeEventListener("click", this.zavrit2.bind(this));
+    window.removeEventListener("click", this.zavrit1.bind(this));
+  }
 
 
   zobrazitInfo(nacteni) {
@@ -405,39 +432,14 @@ class Aplikace {
     modalInfo.style.opacity = 0;
     modalInfo.style.animation = `fadeIn ease-in-out 0.5s`;
     modalInfo.style.opacity = 1;
-    let prihlasenyUzivatel = this.#prihlasenyUzivatel;
-    window.addEventListener("click", function zavrit(e) {
-      if (e.target == modalInfo) {
-        if (nacteni == 1) {
-          let checkbox = document.getElementById("neukazovatInfo");
-          if (checkbox.checked == true) {
-            prihlasenyUzivatel.zobrazovatInfo = false;
-            this.nacistData();
-          }
-        }
-        modalInfo.style.display = "none";
-        window.removeEventListener("click", zavrit);
-        zavritInfoModal.removeEventListener("click", zavrit);
-      }
-    }.bind(this))
-
-    zavritInfoModal.addEventListener("click", function zavrit(e) {
-      if (nacteni == 1) {
-        let checkbox = document.getElementById("neukazovatInfo");
-        if (checkbox.checked == true) {
-          prihlasenyUzivatel.zobrazovatInfo = false;
-          this.nacistData();
-        }
-      }
-      modalInfo.style.display = "none";
-      zavritInfoModal.removeEventListener("click", zavrit);
-      window.removeEventListener("click", zavrit);
-    }.bind(this))
+    window.addEventListener("click", this.zavrit1.bind(this));
+    zavritInfoModal.addEventListener("click", this.zavrit2.bind(this));
   }
 
 
   zacitTest(e) {
     e.preventDefault();
+    window.removeEventListener("click", this.zavrit1);
     if (!this.#prihlasenyUzivatel.soucasnyJazyk || !this.#prihlasenyUzivatel.soucasnaLekce) {
       alert("To start test, select Language and Lesson first!")
       return
