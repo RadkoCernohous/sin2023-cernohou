@@ -181,7 +181,7 @@ if (isset($_REQUEST["prihlasitSe"])){
     <p class="popisStranky">Welcome to Langlet, your vocabulary learning helper. Langlet helps you to organize, practise, test and also share the vocabulary with friends. Let's get started now, by Loggin-in or Signing-up.</p>
     <form action="<?php echo basename($_SERVER["PHP_SELF"]) ?>" class="prihlaseni" method="post">
       <h2>Log-in</h2>
-      <label for="prihlaseniEmail">E.mail</label>
+      <label for="prihlaseniEmail">E-mail</label>
       <br>
       <input type="email" id="prihlaseniEmail" name="prihlaseniEmail" class="hlavniStranaInput" required>
       <br>
@@ -273,6 +273,9 @@ if (isset($_REQUEST["prihlasitSe"])){
       <button class="druhaStranabtn" id="btnSibenice">&#8594;</button>
     </form>
 
+    <div class="casemod" >
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, delectus. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam debitis sapiente totam deleniti tenetur iusto soluta laboriosam quisquam asperiores. Hic.</p>
+    </div>
 
     <form class="nastaveniTestu " id="nastaveniTestu">
       <h2 class="nastaveniTestuNadpis">Test mode</h2>

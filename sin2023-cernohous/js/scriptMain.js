@@ -105,6 +105,10 @@ const modalVysledkyText = document.getElementById("modalVysledkyText");
 const zavritModal = document.getElementById("zavritModal");
 const modalVysledkyNadpis = document.getElementById("modalVysledkyNadpis");
 
+/*import { jazykStranka } from "./preklad";
+console.log(jazykStranka);*/
+
+
 class Test {
   constructor(testovanyJazyk, testovanaLekce, pocetOtazek, pocetSpravnychOdpovedi) {
     this.testovanyJazyk = testovanyJazyk;
