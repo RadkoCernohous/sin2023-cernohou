@@ -69,6 +69,7 @@ const prehledSlovaRadek = document.querySelector(".prehledSlovaRadek");
 const prehledSlova = document.querySelector(".prehledSlova");
 const checkboxOdstranit = document.getElementById("odstranit");
 const prehledPopis = document.getElementById("prehledPopis");
+const caseMode = document.getElementById("case");
 
 const vysledkyTestuFilter = document.getElementById("vysledkyTestuFilter");
 
@@ -128,7 +129,7 @@ class Aplikace {
     let data = schovanyKontejner.value;
     data = data.replaceAll("\'", "\"");
     this.#prihlasenyUzivatel = JSON.parse(data);
-    //console.log(JSON.stringify(this.#prihlasenyUzivatel));
+    console.log(this.#prihlasenyUzivatel);
     this.resetovatData();
     /*this.#prihlasenyUzivatel.slovickaVetsiSance = [];
     this.#prihlasenyUzivatel.arr1;
@@ -188,6 +189,17 @@ class Aplikace {
       clearInterval(this.odpocet);
       this.odpocet = this.zacitOdpocet();
       this.generovatPopisCviceni();
+    }.bind(this))
+
+    caseMode.addEventListener("change", function (e) {
+      if (caseMode.checked) {
+        this.#prihlasenyUzivatel.caseSensitive = false;
+      }
+      else {
+        this.#prihlasenyUzivatel.caseSensitive = true;
+      }
+      clearInterval(this.odpocet);
+      this.odpocet = this.zacitOdpocet();
     }.bind(this))
 
     btnPreklad1.addEventListener("click", function (e) {
@@ -587,6 +599,7 @@ class Aplikace {
     this.#prihlasenyUzivatel.vyberPrekladuSpravne = "";
     this.#prihlasenyUzivatel.ukol1PulBodu = true;
     this.#prihlasenyUzivatel.ukol2PulBodu = true;
+    this.#prihlasenyUzivatel.caseSensitive = true;
 
   }
 
@@ -1318,10 +1331,20 @@ class Aplikace {
     if (!this.#prihlasenyUzivatel.prekladaneSlovoHledane1 || !this.#prihlasenyUzivatel.soucasnaLekce) {
       return
     }
-    if (preklad1.value !== this.#prihlasenyUzivatel.prekladaneSlovoHledane1) {
+    let hledaneSlovo;
+    let slovoUzivatel;
+    if (this.#prihlasenyUzivatel.caseSensitive == true) {
+      hledaneSlovo = this.#prihlasenyUzivatel.prekladaneSlovoHledane1;
+      slovoUzivatel = preklad1.value
+    }
+    else {
+      hledaneSlovo = this.#prihlasenyUzivatel.prekladaneSlovoHledane1.toLowerCase();
+      slovoUzivatel = preklad1.value.toLowerCase();
+    }
+    if (slovoUzivatel !== hledaneSlovo) {
       //console.log("spatne");
       this.#prihlasenyUzivatel.ukol1VyresenoSpravne = false;
-      if (this.porovnaniRetezcu(this.#prihlasenyUzivatel.prekladaneSlovoHledane1, preklad1.value) > 1) {
+      if (this.porovnaniRetezcu(hledaneSlovo, slovoUzivatel) > 1) {
         if (this.#prihlasenyUzivatel.slovicka[this.#prihlasenyUzivatel.soucasnyJazyk][this.#prihlasenyUzivatel.soucasnaLekce].includes(this.#prihlasenyUzivatel.arr1) && !(this.#prihlasenyUzivatel.slovickaVetsiSance.includes(this.#prihlasenyUzivatel.arr1))) {
           this.#prihlasenyUzivatel.slovickaVetsiSance.push(this.#prihlasenyUzivatel.arr1);
         }
@@ -1329,7 +1352,7 @@ class Aplikace {
       }
       preklad1.value = this.#prihlasenyUzivatel.prekladaneSlovoHledane1;
     }
-    else if (preklad1.value === this.#prihlasenyUzivatel.prekladaneSlovoHledane1) {
+    else if (slovoUzivatel === hledaneSlovo) {
       if (this.#prihlasenyUzivatel.ukol1VyresenoSpravne === true) {
         //console.log("spravne");
         this.#prihlasenyUzivatel.pocetSpravnychOdpovedi += 1;
@@ -1357,12 +1380,24 @@ class Aplikace {
     if (!this.#prihlasenyUzivatel.prekladaneSlovoHledane2 || !this.#prihlasenyUzivatel.soucasnaLekce) {
       return
     }
-    if (!this.#prihlasenyUzivatel.prekladaneSlovoHledane2.includes(preklad2.value)) {
+    let hledaneSlovo;
+    let slovoUzivatel;
+    if (this.#prihlasenyUzivatel.caseSensitive == true) {
+      hledaneSlovo = this.#prihlasenyUzivatel.prekladaneSlovoHledane2;
+      slovoUzivatel = preklad2.value
+    }
+    else {
+      hledaneSlovo = [...this.#prihlasenyUzivatel.prekladaneSlovoHledane2].map(function (slovo) { return slovo.toLowerCase(); });
+      slovoUzivatel = preklad2.value.toLowerCase();
+    }
+
+
+    if (!hledaneSlovo.includes(slovoUzivatel)) {
       //console.log("spatne");
       this.#prihlasenyUzivatel.ukol2VyresenoSpravne = false;
       let porovnani = this.porovnaniRetezcu;
-      let skorospravne = this.#prihlasenyUzivatel.prekladaneSlovoHledane2.find(function (slovo) {
-        return porovnani(slovo, preklad2.value) <= 1;
+      let skorospravne = hledaneSlovo.find(function (slovo) {
+        return porovnani(slovo, slovoUzivatel) <= 1;
       })
       if (!skorospravne) {
         if (this.#prihlasenyUzivatel.slovicka[this.#prihlasenyUzivatel.soucasnyJazyk][this.#prihlasenyUzivatel.soucasnaLekce].includes(this.#prihlasenyUzivatel.arr2) && !(this.#prihlasenyUzivatel.slovickaVetsiSance.includes(this.#prihlasenyUzivatel.arr2))) {
@@ -1372,7 +1407,7 @@ class Aplikace {
       }
       preklad2.value = this.#prihlasenyUzivatel.prekladaneSlovoHledane2[0];
     }
-    else if (this.#prihlasenyUzivatel.prekladaneSlovoHledane2.includes(preklad2.value)) {
+    else if (hledaneSlovo.includes(slovoUzivatel)) {
       if (this.#prihlasenyUzivatel.ukol2VyresenoSpravne === true) {
         //console.log("spravne");
         this.#prihlasenyUzivatel.pocetSpravnychOdpovedi += 1;
@@ -1401,17 +1436,38 @@ class Aplikace {
     if (!this.#prihlasenyUzivatel.slovoSibenice || !this.#prihlasenyUzivatel.soucasnaLekce) {
       return
     }
-    if (!this.#prihlasenyUzivatel.sibenicePismena.includes(sibenice.value)) {
-      //console.log("Spatne pismeno")
+    let sibenicepismena;
+    let pismenoUzivatel;
+    if (this.#prihlasenyUzivatel.caseSensitive == true) {
+      console.log(this.#prihlasenyUzivatel);
+      sibenicepismena = [...this.#prihlasenyUzivatel.sibenicePismena];
+      pismenoUzivatel = sibenice.value
+    }
+    else {
+      sibenicepismena = [...this.#prihlasenyUzivatel.sibenicePismena].map(function (slovo) { return slovo.toLowerCase(); });
+      pismenoUzivatel = sibenice.value.toLowerCase();
+    }
+    if (!sibenicepismena.includes(pismenoUzivatel)) {
+      console.log("Spatne pismeno")
       this.#prihlasenyUzivatel.ukol3VyresenoSpravne = false;
       if (!this.#prihlasenyUzivatel.sibenicePismenaSpatne.includes(sibenice.value)) {
         this.#prihlasenyUzivatel.sibenicePismenaSpatne.push(sibenice.value)
       };
     }
-    else if (this.#prihlasenyUzivatel.sibenicePismena.includes(sibenice.value)) {
-      //console.log("Spravne pismeno")
-      if (!this.#prihlasenyUzivatel.sibenicePismenaUhodnuta.includes(sibenice.value)) {
-        this.#prihlasenyUzivatel.sibenicePismenaUhodnuta.push(sibenice.value)
+    else if (sibenicepismena.includes(pismenoUzivatel)) {
+      console.log("Spravne pismeno")
+      if (this.#prihlasenyUzivatel.caseSensitive == true) {
+        if (!this.#prihlasenyUzivatel.sibenicePismenaUhodnuta.includes(sibenice.value)) {
+          this.#prihlasenyUzivatel.sibenicePismenaUhodnuta.push(sibenice.value)
+        }
+      }
+      else {
+        if (!this.#prihlasenyUzivatel.sibenicePismenaUhodnuta.includes(pismenoUzivatel) && this.#prihlasenyUzivatel.sibenicePismena.includes(pismenoUzivatel)) {
+          this.#prihlasenyUzivatel.sibenicePismenaUhodnuta.push(pismenoUzivatel)
+        }
+        if (!this.#prihlasenyUzivatel.sibenicePismenaUhodnuta.includes(pismenoUzivatel.toUpperCase()) && this.#prihlasenyUzivatel.sibenicePismena.includes(pismenoUzivatel.toUpperCase())) {
+          this.#prihlasenyUzivatel.sibenicePismenaUhodnuta.push(pismenoUzivatel.toUpperCase)
+        }
       }
     }
     if (this.#prihlasenyUzivatel.sibenicePismenaUhodnuta.length === this.#prihlasenyUzivatel.sibenicePismena.length) {

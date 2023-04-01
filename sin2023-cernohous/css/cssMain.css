@@ -204,23 +204,35 @@ h1 {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-.soucasnyMod {
+
+
+
+.soucasnyMod,
+.casemod {
   width: 90%;
   text-align: end;
   font-weight: 500;
+  margin-bottom: 0.5%;
 }
 
 @media screen and (max-width: 992px) {
 
   .prihlaseni,
   .registrace,
-  .soucasnyMod {
+  .soucasnyMod,
+  .casemod {
     width: 100%;
     margin-bottom: 5%;
   }
 
-  .soucasnyMod {
+  .soucasnyMod,
+  .casemod {
     text-align: start;
+    margin-bottom: 0.2%;
+  }
+
+  .casemod {
+    margin-bottom: 5%;
   }
 
 }

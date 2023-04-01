@@ -244,6 +244,10 @@ if (isset($_REQUEST["prihlasitSe"])){
     </form>
 
     <p class="soucasnyMod">Practise mode</p>
+    <div class="casemod" >
+    <input type="checkbox" id="case" name="case" value="case">
+      <label for="case">Case insensitive</label><br>
+    </div>
 
     <form class="formPreklad1" autocomplete="off">
       <p class="popis" id="popis1"></p>
@@ -273,9 +277,6 @@ if (isset($_REQUEST["prihlasitSe"])){
       <button class="druhaStranabtn" id="btnSibenice">&#8594;</button>
     </form>
 
-    <div class="casemod" >
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, delectus. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam debitis sapiente totam deleniti tenetur iusto soluta laboriosam quisquam asperiores. Hic.</p>
-    </div>
 
     <form class="nastaveniTestu " id="nastaveniTestu">
       <h2 class="nastaveniTestuNadpis">Test mode</h2>
