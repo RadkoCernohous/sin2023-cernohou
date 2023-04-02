@@ -129,7 +129,7 @@ class Aplikace {
     let data = schovanyKontejner.value;
     data = data.replaceAll("\'", "\"");
     this.#prihlasenyUzivatel = JSON.parse(data);
-    console.log(this.#prihlasenyUzivatel);
+    //console.log(this.#prihlasenyUzivatel);
     this.resetovatData();
     /*this.#prihlasenyUzivatel.slovickaVetsiSance = [];
     this.#prihlasenyUzivatel.arr1;
@@ -1448,14 +1448,14 @@ class Aplikace {
       pismenoUzivatel = sibenice.value.toLowerCase();
     }
     if (!sibenicepismena.includes(pismenoUzivatel)) {
-      console.log("Spatne pismeno")
+      //console.log("Spatne pismeno")
       this.#prihlasenyUzivatel.ukol3VyresenoSpravne = false;
       if (!this.#prihlasenyUzivatel.sibenicePismenaSpatne.includes(sibenice.value)) {
         this.#prihlasenyUzivatel.sibenicePismenaSpatne.push(sibenice.value)
       };
     }
     else if (sibenicepismena.includes(pismenoUzivatel)) {
-      console.log("Spravne pismeno")
+      //console.log("Spravne pismeno")
       if (this.#prihlasenyUzivatel.caseSensitive == true) {
         if (!this.#prihlasenyUzivatel.sibenicePismenaUhodnuta.includes(sibenice.value)) {
           this.#prihlasenyUzivatel.sibenicePismenaUhodnuta.push(sibenice.value)
