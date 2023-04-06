@@ -246,7 +246,7 @@ if (isset($_REQUEST["prihlasitSe"])){
     <p class="soucasnyMod">Practise mode</p>
     <div class="casemod" >
     <input type="checkbox" id="case" name="case" value="case">
-      <label for="case">Case insensitive</label><br>
+      <label for="case"><abbr title="Ignore capitalization (check for this) or Match exact capitalization (leave unchecked).">Case insensitive</abbr></label><br>
     </div>
 
     <form class="formPreklad1" autocomplete="off">
