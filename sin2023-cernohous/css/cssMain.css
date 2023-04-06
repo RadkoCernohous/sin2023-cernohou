@@ -212,27 +212,24 @@ h1 {
   width: 90%;
   text-align: end;
   font-weight: 500;
-  margin-bottom: 0.5%;
+  margin-bottom: 0;
+}
+
+.casemod {
+  margin-bottom: 2%;
 }
 
 abbr[title] {
   border-bottom: none;
-  position: relative;
+  cursor: inherit !important;
+  text-decoration: none !important;
+
+  border-bottom: 0.1rem black dotted;
+  line-height: 1.5;
+
+
 }
 
-abbr[title]:hover::before {
-  content: attr(title);
-  background-color: #333;
-  color: #fff;
-  padding: 4px 8px;
-  border-radius: 4px;
-  position: absolute;
-  z-index: 1;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-}
 
 @media screen and (max-width: 992px) {
 
@@ -282,13 +279,13 @@ abbr[title]:hover::before {
 .vybratJazyk {
   width: 40%;
   text-align: end;
-  margin-bottom: 3%;
+  margin-bottom: 2%;
 }
 
 .vybratLekci {
   width: 40%;
   text-align: start;
-  margin-bottom: 3%;
+  margin-bottom: 2%;
 }
 
 .vybratJazyk option,
