@@ -1,12 +1,8 @@
  <?php 
- $serverIP="127.0.0.1";
- $username="root";
- $dtbsPassword="";
- $dtbsName="sin2023-cernohous";
- $tableName="langlet";
+  require "utilities.php";
  ?>
  
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -63,7 +59,8 @@ if(isset($_REQUEST["reg"]) and isset($_REQUEST["email"]) and isset($_REQUEST["ps
   $conn = mysqli_connect($serverIP, $username, $dtbsPassword, $dtbsName);
 
   if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+    echo "Unable to connect to the database. Please try again later.";
+    error_log("Database connection failed: " . mysqli_connect_error());
   }
 
   $conn->set_charset("utf8mb4");
@@ -108,7 +105,8 @@ if (isset($_REQUEST["prihlasitSe"])){
 
       // Check connection
       if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
+        echo "Unable to connect to the database. Please try again later.";
+        error_log("Database connection failed: " . mysqli_connect_error());
       }
 
       //set encoding to utf8

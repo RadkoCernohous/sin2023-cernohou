@@ -1,9 +1,5 @@
 <?php
-$serverIP="127.0.0.1";
-$username="root";
-$dtbsPassword="";
-$dtbsName="sin2023-cernohous";
-$tableName="langlet";
+  require "utilities.php";
 $url = "http://127.0.0.1/cernohous/sin2023-cernohous/sin2023-cernohous/index.php"; //Změnit url adresu (aby odkazovala na index.php)
 
 session_start();
@@ -39,7 +35,8 @@ if (isset($_REQUEST["registrovat"])){
                         $conn = mysqli_connect($serverIP, $username, $dtbsPassword, $dtbsName);
                         // Check connection
                         if (!$conn) {
-                            die("Connection failed: " . mysqli_connect_error());
+                            echo "Unable to connect to the database. Please try again later.";
+                            error_log("Database connection failed: " . mysqli_connect_error());
                         }   
                         
                         //set encoding
@@ -119,52 +116,5 @@ if (isset($_REQUEST["registrovat"])){
     }
 
 }
-
-function sendEmail(string $email, string $activationCode):void
-{
-    $activation_link = APP_URL . "/email.php?email=$email&activationCode=$activationCode";
-    $mail = new PHPMailer(true);
-    try{
-        //settings
-        $mail->SMTPOptions = array(
-            'ssl' => array(
-            'verify_peer' => false,
-            'verify_peer_name' => false,
-            'allow_self_signed' => true
-            )
-            );
-        $mail->SMTPDebug=SMTP::DEBUG_SERVER; 
-        $mail->isSMTP();
-        $mail->Host       =  "smtp.gmail.com";
-        $mail->SMTPAuth   = true;
-        $mail->Username   = "bot867261.noreply@gmail.com";
-        $mail->password   = "ryedvlsosdnatjvy";
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
-        $mail->Port       = 465;                                    
-        
-        //recipients
-        $mail->setFrom("bot867261.noreply@gmail.com","BOT");
-        $mail->addAddress($email);
-        
-        //content
-        $mail->isHTML(true);
-        $mail->Subject = "Activate your account";
-        $mail->Body = <<<MESSAGE
-                        Hi,
-                        To activate your account, click the following link:
-                        $activation_link
-                        MESSAGE;
-        print("email sent");
-        $mail->send();
-    }catch(Exception $e){
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    }
-    
-
-
-}
-
-
-
 
 ?>

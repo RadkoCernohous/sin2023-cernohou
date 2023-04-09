@@ -1,9 +1,5 @@
 <?php 
-$serverIP="127.0.0.1";
-$username="root";
-$dtbsPassword="";
-$dtbsName="sin2023-cernohous";
-$tableName="langlet";
+  require "utilities.php";
  ?>
  <!DOCTYPE html>
 <html lang="en">
@@ -53,8 +49,9 @@ if(isset($_REQUEST["id"]) and isset($_REQUEST["type"]) and isset($_REQUEST["lang
   mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
   $conn = mysqli_connect($serverIP, $username, $dtbsPassword, $dtbsName);
 
-  if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+  if (!$conn) { 
+    echo "Unable to connect to the database. Please try again later.";
+    error_log("Database connection failed: " . mysqli_connect_error());
   }
 
   $conn->set_charset("utf8mb4");
@@ -94,7 +91,8 @@ if(isset($_REQUEST["prihlasitSe"]) and isset($_REQUEST["prihlaseniEmail"]) and i
   $conn = mysqli_connect($serverIP, $username, $dtbsPassword, $dtbsName);
   
   if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+    echo "Unable to connect to the database. Please try again later.";
+    error_log("Database connection failed: " . mysqli_connect_error());
   }
   
   $conn->set_charset("utf8mb4");

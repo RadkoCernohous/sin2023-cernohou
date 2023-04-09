@@ -1,9 +1,5 @@
 <?php
-$serverIP="127.0.0.1";
-$username="root";
-$dtbsPassword="";
-$dtbsName="sin2023-cernohous";
-$tableName="langlet";
+  require "utilities.php";
 
 session_start();
 $data = $_POST["schovanyKontejner3"];
@@ -14,7 +10,8 @@ $conn = mysqli_connect($serverIP, $username, $dtbsPassword, $dtbsName);
 $conn->set_charset("utf8mb4");
 
 if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+  echo "Unable to connect to the database. Please try again later.";
+  error_log("Database connection failed: " . mysqli_connect_error());
 }
 
 $sql = 'UPDATE '.$tableName.' SET userdata = ? WHERE email= ?';   
