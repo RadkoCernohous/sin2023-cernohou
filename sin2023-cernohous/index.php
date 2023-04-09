@@ -12,6 +12,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="Web app for learning vocabulary">
+<meta name="robots" content="index, follow">
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/cssMain.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,15 +28,13 @@
 <link
   href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css"
   rel="stylesheet">
-  <script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"
 ></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <title>Langlet</title>
 </head>
 <body>
-<div class="body"> 
+
 
 <?php 
 
@@ -440,7 +440,6 @@ if (isset($_REQUEST["prihlasitSe"])){
 <footer>
   <p>Radko Černohous, 2023</p>
 </footer>
-</div>
 <?php
 if($prihlaseno===true){
 ?>

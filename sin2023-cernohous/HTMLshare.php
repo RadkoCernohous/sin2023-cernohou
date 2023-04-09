@@ -25,8 +25,7 @@ $tableName="langlet";
 <title>Langlet share</title>
 </head>
 <body>
-<div class="body"> 
-
+ 
 <?php 
 
 session_start();
@@ -162,7 +161,7 @@ if(isset($_REQUEST["prihlasitSe"]) and isset($_REQUEST["prihlaseniEmail"]) and i
     <p class="popisStranky"><?php if (isset($_SESSION["descr"])){print($_SESSION["descr"]);} ?> To import this data to Your database, fill-in your credentials in the form below. After a successfull import, you will be redirected to your Langlet account.</p>
     <form autocomplete="off" action="<?php echo basename($_SERVER["PHP_SELF"]) ?>" class="prihlaseni" method="post">
       <h2>Fill-in Your credentials</h2>
-      <label for="email">E-mail</label>
+      <label for="prihlaseniEmail">E-mail</label>
       <br>
       <input type="email" id="prihlaseniEmail" name="prihlaseniEmail" class="hlavniStranaInput" autocomplete="off">
       <br>
@@ -170,7 +169,7 @@ if(isset($_REQUEST["prihlasitSe"]) and isset($_REQUEST["prihlaseniEmail"]) and i
       <br>
       <input type="password" class="hlavniStranaInput" id="prihlaseniHeslo" name="prihlaseniHeslo" autocomplete="off">
       <br>
-      <input type="submit" class="hlavniStranabtn" id="prihlasitSe" name="prihlasitSe" value="Import to my vocabulary" autocomplete="off">
+      <input type="submit" class="hlavniStranabtn" id="prihlasitSe" name="prihlasitSe" value="Import to my vocabulary">
       <p hidden class="cervene" id="errorKontejner"></p>
       <?php if($correctDetails===false or $dataImport===false){echo("<p class=\"cervene\">".$message."</p>");} ?>
     </form>

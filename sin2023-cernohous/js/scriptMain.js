@@ -1030,7 +1030,7 @@ class Aplikace {
     let link = `http://127.0.0.1/cernohous/sin2023-cernohous/sin2023-cernohous/HTMLshare.php`;  //změnit URL adresu aby odkazovala na HTMLshare.php
     link += `?id=${schovanyKontejner2.value}&`;
     if (sdileniTypJazyk.checked == true) {
-      link += `type=language&language=${jazyk}&lesson=""&name=${this.#prihlasenyUzivatel.jmeno}`;
+      link += `type=language&language=${jazyk}&lesson=&name=${this.#prihlasenyUzivatel.jmeno}`;
       btnKopirovatLink.hidden = false;
     }
     else {
