@@ -1,6 +1,6 @@
 <?php
   require "utilities.php";
-$url = "http://127.0.0.1/cernohous/sin2023-cernohous/sin2023-cernohous/index.php"; //Změnit url adresu (aby odkazovala na index.php)
+$url = $linkIndex; 
 
 session_start();
 

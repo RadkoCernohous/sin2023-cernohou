@@ -654,7 +654,7 @@ class Aplikace {
       return
     }
     if (lekcePridana.includes("\"") || lekcePridana.includes("\'")) {
-      lekcePridana.value = ``;
+      pridanaLekce.value = ``;
       alert("Can´t add a Lesson name which contains quotes!");
       return
     }
