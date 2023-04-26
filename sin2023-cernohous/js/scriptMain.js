@@ -599,6 +599,7 @@ class Aplikace {
     this.#prihlasenyUzivatel.ukol1PulBodu = true;
     this.#prihlasenyUzivatel.ukol2PulBodu = true;
     this.#prihlasenyUzivatel.caseSensitive = true;
+    this.#prihlasenyUzivatel.urovenProhlizeni = 0;
 
   }
 
