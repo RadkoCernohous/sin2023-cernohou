@@ -518,6 +518,7 @@ class Aplikace {
   }
 
   kontrolaUkonceniTestu() {
+    if (this.#prihlasenyUzivatel.probihaTest == false) return;
     if (this.#prihlasenyUzivatel.pocetZodpovezenychOtazek == this.#prihlasenyUzivatel.pocetOtazek) {
       this.ukoncitTest();
     }
@@ -1439,7 +1440,7 @@ class Aplikace {
     let sibenicepismena;
     let pismenoUzivatel;
     if (this.#prihlasenyUzivatel.caseSensitive == true) {
-      console.log(this.#prihlasenyUzivatel);
+      //console.log(this.#prihlasenyUzivatel);
       sibenicepismena = [...this.#prihlasenyUzivatel.sibenicePismena];
       pismenoUzivatel = sibenice.value
     }
