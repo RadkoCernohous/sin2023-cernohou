@@ -460,7 +460,7 @@ class Aplikace {
       return
     }
     if (this.#prihlasenyUzivatel.slovicka[this.#prihlasenyUzivatel.soucasnyJazyk][this.#prihlasenyUzivatel.soucasnaLekce].length < 4) {
-      alert("To start the test, the Lesson needs to contain at least 3 words!");
+      alert("To start the test, the Lesson needs to contain at least 4 words!");
       return
     }
     this.#prihlasenyUzivatel.probihaTest = true;
